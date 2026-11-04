@@ -1,0 +1,67 @@
+/* ---------- Product grid section ---------- */
+.lh-grid { background: var(--lh-bg); padding: 72px 0 96px; }
+
+/* Heading row: eyebrow + heading on the left, hint on the right */
+.lh-grid__head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; margin-bottom: 20px;
+}
+.lh-grid__eyebrow {
+  margin: 0 0 6px; font-size: 11px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--lh-muted);
+}
+.lh-grid__heading {
+  margin: 0; font-family: var(--lh-font-heading); font-weight: 700;
+  font-size: 44px; line-height: 1; letter-spacing: -.03em;
+}
+.lh-grid__hint { margin: 0 0 6px; font-size: 13px; color: var(--lh-muted); }
+
+/* 3 columns on desktop, 6 tiles = 2 rows */
+.lh-grid__tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+/* ---------- Tile ---------- */
+.lh-tile {
+  position: relative; aspect-ratio: 5 / 6;
+  border-radius: 16px; overflow: hidden; background: var(--lh-border);
+}
+.lh-tile__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Hotspot (+): white circle, centred on the x/y point */
+.lh-tile__hotspot {
+  position: absolute; transform: translate(-50%, -50%);
+  display: grid; place-items: center;
+  width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%;
+  background: #fff; color: var(--lh-dark); cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+  transition: transform .2s ease, background .2s ease, color .2s ease;
+}
+.lh-tile__hotspot:hover { transform: translate(-50%, -50%) scale(1.15); background: var(--lh-dark); color: #fff; }
+.lh-tile__hotspot:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* Label: white pill at the bottom left */
+.lh-tile__label {
+  position: absolute; left: 16px; bottom: 16px; max-width: calc(100% - 32px);
+  display: inline-flex; align-items: center; gap: 10px; margin: 0;
+  padding: 7px 14px; border-radius: 999px;
+  background: #fff; font-size: 11px; line-height: 1.2;
+  white-space: nowrap;
+}
+.lh-tile__label span { overflow: hidden; text-overflow: ellipsis; }
+.lh-tile__label strong { font-weight: 600; }
+
+/* ---------- Tablet / mobile (check against the 390px Figma frame) ---------- */
+@media (max-width: 1100px) {
+  .lh-grid__heading { font-size: 36px; }
+}
+@media (max-width: 749px) {
+  .lh-grid { padding: 40px 0 56px; }
+  .lh-grid__head { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .lh-grid__heading { font-size: 28px; }
+  .lh-grid__tiles { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .lh-tile { border-radius: 12px; }
+  .lh-tile__label { left: 8px; bottom: 8px; max-width: calc(100% - 16px); font-size: 10px; padding: 6px 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lh-tile__hotspot { transition: none; }
+}

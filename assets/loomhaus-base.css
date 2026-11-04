@@ -1,0 +1,33 @@
+/* Loomhaus base: design tokens shared by every section.
+   Replace the placeholder colours with the exact values from Figma. */
+:root {
+  /* Colours (TODO: copy exact hex values from Figma Inspect) */
+  --lh-bg: #f5f0eb;
+  --lh-dark: #222220;
+  --lh-text: #222220;
+  --lh-muted: #6f6b66;
+  --lh-border: #e4ddd3;
+  --lh-accent: #6b705e;
+
+  /* Typography */
+  --lh-font-heading: 'Familjen Grotesk', system-ui, sans-serif;
+  --lh-font-body: 'Cabin', system-ui, sans-serif;
+
+  /* Layout: content is ~96px from the edges on a 1440px frame */
+  --lh-page-width: 1440px;
+  --lh-gutter: 96px;
+}
+
+@media (max-width: 1100px) { :root { --lh-gutter: 40px; } }
+@media (max-width: 749px)  { :root { --lh-gutter: 20px; } }
+
+/* Small reset scoped to our own wrappers so Dawn styles are not touched */
+.lh-section { font-family: var(--lh-font-body); color: var(--lh-text); }
+.lh-section *, .lh-section *::before, .lh-section *::after { box-sizing: border-box; }
+.lh-container { max-width: var(--lh-page-width); margin: 0 auto; padding: 0 var(--lh-gutter); }
+
+/* Visually hidden helper for accessible labels */
+.lh-sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}

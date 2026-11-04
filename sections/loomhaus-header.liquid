@@ -1,0 +1,53 @@
+
+{{ 'loomhaus-header.css' | asset_url | stylesheet_tag }}
+
+<header class="lh-section lh-header">
+  <div class="lh-container lh-header__inner">
+
+    {%- comment -%} Logo: image if uploaded, otherwise text {%- endcomment -%}
+    <a href="{{ routes.root_url }}" class="lh-header__logo">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 300 | image_tag: loading: 'eager', alt: section.settings.logo_text }}
+      {%- else -%}
+        {{ section.settings.logo_text }}
+      {%- endif -%}
+    </a>
+
+    <p class="lh-header__text">{{ section.settings.header_text }}</p>
+
+    <div class="lh-header__actions">
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="lh-header__btn">
+          <span>{{ section.settings.button_label }}</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {%- endif -%}
+
+      {%- comment -%} Cart icon: click is handled globally via [data-cart-open] {%- endcomment -%}
+      <a href="{{ routes.cart_url }}" class="lh-header__cart" data-cart-open aria-label="Open cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 8h14l-1 12H6L5 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M9 8V6a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span class="lh-header__count" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Loomhaus header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo image (optional)" },
+    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "Loomhaus" },
+    { "type": "text", "id": "header_text", "label": "Header text", "default": "Clothes made to be worn for years, not seasons." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop the drop" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Loomhaus header" }]
+}
+{% endschema %}

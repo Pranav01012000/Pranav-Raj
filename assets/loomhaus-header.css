@@ -1,0 +1,53 @@
+/* ---------- Announcement bar (36px tall, centred, sparkle divider) ---------- */
+.lh-announce { background: var(--bar-bg); color: var(--bar-text); }
+.lh-announce__inner {
+  display: flex; align-items: center; justify-content: center; gap: 40px;
+  height: 36px; padding: 0 var(--lh-gutter);
+  font-size: 12px; line-height: 1;
+}
+.lh-announce__msg { margin: 0; white-space: nowrap; }
+.lh-announce__sep { font-size: 10px; opacity: .8; }
+
+/* ---------- Header (about 85px tall) ---------- */
+.lh-header { background: var(--lh-bg); border-bottom: 1px solid var(--lh-border); }
+.lh-header__inner {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  min-height: 84px; gap: 24px;
+}
+.lh-header__logo {
+  justify-self: start;
+  font-family: var(--lh-font-heading); font-weight: 700; font-size: 34px;
+  letter-spacing: -.03em; line-height: 1; color: var(--lh-text); text-decoration: none;
+}
+.lh-header__logo img { display: block; height: 32px; width: auto; }
+.lh-header__text { margin: 0; font-size: 14px; color: var(--lh-text); text-align: center; }
+
+.lh-header__actions { display: flex; align-items: center; gap: 24px; justify-self: end; }
+
+/* "Shop the drop" pill button */
+.lh-header__btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 48px; padding: 0 28px; border-radius: 999px;
+  background: var(--lh-border); color: var(--lh-text);
+  font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; transition: background .2s, color .2s;
+}
+.lh-header__btn:hover { background: var(--lh-dark); color: #fff; }
+
+/* Cart icon with a small count bubble */
+.lh-header__cart { position: relative; display: inline-flex; color: var(--lh-text); }
+.lh-header__count {
+  position: absolute; top: -7px; right: -9px;
+  min-width: 16px; height: 16px; padding: 0 4px; border-radius: 999px;
+  background: var(--lh-accent); color: #fff;
+  font-size: 10px; font-weight: 600; line-height: 16px; text-align: center;
+}
+.lh-header__count[hidden] { display: none; }
+
+/* ---------- Mobile (check against the 390px Figma frame) ---------- */
+@media (max-width: 749px) {
+  .lh-announce__inner { justify-content: flex-start; gap: 24px; overflow-x: auto; }
+  .lh-header__inner { grid-template-columns: 1fr auto; min-height: 60px; }
+  .lh-header__logo { font-size: 26px; }
+  .lh-header__text, .lh-header__btn { display: none; }
+}

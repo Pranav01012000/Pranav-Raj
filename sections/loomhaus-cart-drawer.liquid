@@ -1,0 +1,58 @@
+
+{{ 'loomhaus-cart-drawer.css' | asset_url | stylesheet_tag }}
+
+{%- assign auto_product = section.settings.auto_product | default: all_products['soft-winter-jacket'] -%}
+
+{%- comment -%} Find the M / Black variant, whatever the option order is {%- endcomment -%}
+{%- assign auto_variant_id = '' -%}
+{%- for v in auto_product.variants -%}
+  {%- assign opts = v.options | join: '|' | downcase | split: '|' -%}
+  {%- if opts contains 'm' and opts contains 'black' -%}
+    {%- assign auto_variant_id = v.id -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<div class="lh-drawer" data-cart-drawer data-auto-variant-id="{{ auto_variant_id }}" aria-hidden="true">
+  <div class="lh-drawer__overlay" data-drawer-close></div>
+
+  <aside class="lh-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="lh-drawer-title">
+    <header class="lh-drawer__header">
+      <h2 id="lh-drawer-title">{{ section.settings.title }} (<span data-drawer-count>0</span>)</h2>
+      <button type="button" class="lh-drawer__close" data-drawer-close aria-label="Close cart">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <div class="lh-drawer__items" data-drawer-items></div>
+
+    <footer class="lh-drawer__footer">
+      <div class="lh-drawer__subtotal">
+        <span>Subtotal</span>
+        <strong data-drawer-subtotal></strong>
+      </div>
+      <p class="lh-drawer__note">{{ section.settings.note }}</p>
+      <a href="{{ routes.cart_url | replace: 'cart', 'checkout' }}" class="lh-drawer__checkout" data-drawer-checkout>
+        <span>Checkout</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </footer>
+  </aside>
+</div>
+
+<script src="{{ 'loomhaus-cart-drawer.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Loomhaus cart drawer",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Your cart" },
+    { "type": "text", "id": "note", "label": "Note", "default": "Taxes included. Shipping calculated at checkout." },
+    { "type": "product", "id": "auto_product", "label": "Auto-add product (Soft Winter Jacket)" }
+  ]
+}
+{% endschema %}
