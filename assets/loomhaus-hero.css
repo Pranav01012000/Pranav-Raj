@@ -1,0 +1,103 @@
+/* ---------- Hero ---------- */
+.lh-hero { background: var(--lh-bg); padding: 80px 0; overflow: hidden; }
+.lh-hero__inner {
+  display: grid; grid-template-columns: 1fr minmax(0, 504px);
+  align-items: center; gap: 48px;
+}
+
+/* Badge: olive pill */
+.lh-hero__badge {
+  display: inline-block; padding: 9px 16px; border-radius: 999px;
+  background: var(--lh-accent); color: #fff;
+  font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+}
+
+/* Heading: very bold, tight leading, breaks after "The Winter" */
+.lh-hero__heading {
+  margin: 24px 0 20px; max-width: 5.5em;
+  font-family: var(--lh-font-heading); font-weight: 700;
+  font-size: clamp(52px, 6.1vw, 88px); line-height: .9; letter-spacing: -.035em;
+}
+.lh-hero__text { margin: 0 0 28px; max-width: 500px; font-size: 16px; line-height: 1.7; color: var(--lh-muted); }
+
+/* Shop now button: arrow slides right and the button lifts on hover */
+.lh-hero__btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  height: 52px; padding: 0 32px; border-radius: 999px;
+  background: var(--lh-dark); color: #fff;
+  font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.lh-hero__btn-arrow { transition: transform .25s ease; }
+.lh-hero__btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 0, 0, .18); }
+.lh-hero__btn:hover .lh-hero__btn-arrow { transform: translateX(5px); }
+.lh-hero__btn:focus-visible { outline: 2px solid var(--lh-dark); outline-offset: 3px; }
+
+/* Stats */
+.lh-hero__stats { display: flex; gap: 40px; margin: 32px 0 0; }
+.lh-hero__stat { margin: 0; }
+.lh-hero__stat dt { font-family: var(--lh-font-heading); font-size: 28px; font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+.lh-hero__stat dd { margin: 4px 0 0; font-size: 12px; color: var(--lh-muted); }
+
+/* Media: the circle is as wide as the wrapper, the image is slightly narrower
+   and left aligned, so only the right part of the circle peeks out. */
+.lh-hero__media { position: relative; width: 100%; max-width: 504px; justify-self: end; }
+.lh-hero__circle {
+  position: absolute; z-index: 0; right: 0; top: 50%; transform: translateY(-50%);
+  width: 100%; aspect-ratio: 1; border-radius: 50%; background: var(--lh-border);
+}
+.lh-hero__image {
+  position: relative; z-index: 1; width: 88.5%; aspect-ratio: 5 / 6;
+  border-radius: 999px 999px 20px 20px;   /* arch-shaped top */
+  overflow: hidden; background: var(--lh-border);
+}
+.lh-hero__image img, .lh-hero__placeholder { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Floating card: overlaps the left edge of the image */
+.lh-hero__card {
+  position: absolute; z-index: 2; left: -12%; bottom: 13%;
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 18px 10px 10px; border-radius: 14px;
+  background: #fff; box-shadow: 0 8px 28px rgba(0, 0, 0, .12);
+}
+.lh-hero__card-thumb { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: var(--lh-border); flex: none; }
+.lh-hero__card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lh-hero__card-text { display: flex; flex-direction: column; gap: 2px; font-size: 14px; line-height: 1.2; }
+.lh-hero__card-text strong { font-family: var(--lh-font-heading); font-weight: 700; }
+.lh-hero__card-text small { color: var(--lh-muted); font-size: 12px; }
+
+/* ---------- Hero: tablet and mobile ---------- */
+@media (max-width: 1100px) {
+  .lh-hero__inner { grid-template-columns: 1fr minmax(0, 400px); gap: 32px; }
+}
+@media (max-width: 749px) {
+  .lh-hero { padding: 32px 0 48px; }
+  .lh-hero__inner { grid-template-columns: 1fr; gap: 40px; }
+  .lh-hero__stats { gap: 24px; }
+  .lh-hero__stat dt { font-size: 22px; }
+  .lh-hero__media { justify-self: center; max-width: 360px; }
+  .lh-hero__card { left: 8px; }
+}
+
+/* ---------- Marquee (about 52px tall, darker olive strip) ---------- */
+.lh-marquee { background: var(--lh-accent); color: #fff; overflow: hidden; }
+.lh-marquee__track { display: flex; width: max-content; animation: lh-marquee 30s linear infinite; }
+.lh-marquee:hover .lh-marquee__track { animation-play-state: paused; }  /* pause on hover */
+.lh-marquee__group { display: flex; align-items: center; flex: none; }
+.lh-marquee__item {
+  display: inline-flex; align-items: center; gap: 28px; padding: 16px 0 16px 28px;
+  font-size: 15px; font-weight: 500; white-space: nowrap;
+}
+.lh-marquee__sep { font-size: 12px; opacity: .8; }
+
+/* The track holds two identical groups, so moving by -50% loops without a jump */
+@keyframes lh-marquee { to { transform: translateX(-50%); } }
+
+@media (max-width: 749px) {
+  .lh-marquee__item { font-size: 13px; padding: 12px 0 12px 20px; gap: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lh-marquee__track { animation: none; }
+  .lh-hero__btn, .lh-hero__btn-arrow { transition: none; }
+}

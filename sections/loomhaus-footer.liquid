@@ -1,0 +1,71 @@
+{{ 'loomhaus-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="lh-section lh-footer">
+  <div class="lh-container lh-footer__inner">
+
+    {%- comment -%} Brand {%- endcomment -%}
+    <div class="lh-footer__brand">
+      <a href="{{ routes.root_url }}" class="lh-footer__logo">{{ section.settings.logo_text }}</a>
+      <p class="lh-footer__tagline">{{ section.settings.tagline }}</p>
+    </div>
+
+    {%- comment -%} Link columns {%- endcomment -%}
+    {%- for block in section.blocks -%}
+      <nav class="lh-footer__col" aria-label="{{ block.settings.heading | escape }}" {{ block.shopify_attributes }}>
+        <h3 class="lh-footer__heading">{{ block.settings.heading }}</h3>
+        <ul>
+          {%- for i in (1..6) -%}
+            {%- assign label_key = 'label_' | append: i -%}
+            {%- assign url_key = 'url_' | append: i -%}
+            {%- assign label = block.settings[label_key] -%}
+            {%- if label != blank -%}
+              <li><a href="{{ block.settings[url_key] | default: '#' }}">{{ label }}</a></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endfor -%}
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Loomhaus footer",
+  "settings": [
+    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "Loomhaus" },
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Clothes made to be worn for years, not seasons." }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Link column",
+      "limit": 2,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Shop" },
+        { "type": "text", "id": "label_1", "label": "Link 1 label" },
+        { "type": "url", "id": "url_1", "label": "Link 1 URL" },
+        { "type": "text", "id": "label_2", "label": "Link 2 label" },
+        { "type": "url", "id": "url_2", "label": "Link 2 URL" },
+        { "type": "text", "id": "label_3", "label": "Link 3 label" },
+        { "type": "url", "id": "url_3", "label": "Link 3 URL" },
+        { "type": "text", "id": "label_4", "label": "Link 4 label" },
+        { "type": "url", "id": "url_4", "label": "Link 4 URL" },
+        { "type": "text", "id": "label_5", "label": "Link 5 label" },
+        { "type": "url", "id": "url_5", "label": "Link 5 URL" },
+        { "type": "text", "id": "label_6", "label": "Link 6 label" },
+        { "type": "url", "id": "url_6", "label": "Link 6 URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Loomhaus footer",
+      "blocks": [
+        { "type": "column", "settings": { "heading": "Shop", "label_1": "Women", "label_2": "Men", "label_3": "New arrivals", "label_4": "Bestsellers" } },
+        { "type": "column", "settings": { "heading": "Help", "label_1": "Shipping", "label_2": "Returns", "label_3": "Size guide", "label_4": "Contact us" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

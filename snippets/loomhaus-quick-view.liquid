@@ -1,0 +1,50 @@
+{{ 'loomhaus-quick-view.css' | asset_url | stylesheet_tag }}
+
+<div class="lh-qv" data-qv aria-hidden="true">
+  <div class="lh-qv__overlay" data-qv-close></div>
+
+  <div class="lh-qv__panel" role="dialog" aria-modal="true" aria-labelledby="lh-qv-title">
+    <span class="lh-qv__handle" aria-hidden="true"></span>
+
+    <div class="lh-qv__media"><img data-qv-image alt="" width="400" height="500"></div>
+
+    <div class="lh-qv__body">
+      <div class="lh-qv__top">
+        <div>
+          <h3 class="lh-qv__title" id="lh-qv-title" data-qv-title></h3>
+          <p class="lh-qv__price" data-qv-price></p>
+        </div>
+        <button type="button" class="lh-qv__close" data-qv-close aria-label="Close quick view">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <p class="lh-qv__desc" data-qv-desc></p>
+
+      <div class="lh-qv__group" data-qv-color-group>
+        <span class="lh-qv__label">Color</span>
+        <div class="lh-qv__colors" data-qv-colors></div>
+      </div>
+
+      <div class="lh-qv__group" data-qv-size-group>
+        <label class="lh-qv__label" for="lh-qv-size">Size</label>
+        <div class="lh-qv__select">
+          <select id="lh-qv-size" data-qv-size></select>
+        </div>
+      </div>
+
+      <p class="lh-qv__error" data-qv-error role="alert" hidden></p>
+
+      <button type="button" class="lh-qv__add" data-qv-add disabled>
+        <span data-qv-add-label>Add to cart</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'loomhaus-quick-view.js' | asset_url }}" defer></script>

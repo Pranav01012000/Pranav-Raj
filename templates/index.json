@@ -1,75 +1,256 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "announcement": {
+      "type": "loomhaus-announcement-bar",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "m1": {
+          "type": "message",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "text": "Free shipping on orders over ₹999"
           }
         },
-        "button": {
-          "type": "buttons",
+        "m2": {
+          "type": "message",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "text": "Use code LOOM10 for 10% off your first order"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "m1",
+        "m2"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "bg": "#2a2a26",
+        "text_color": "#ffffff"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "header": {
+      "type": "loomhaus-header",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "logo_text": "Loomhaus",
+        "header_text": "Clothes made to be worn for years, not seasons.",
+        "button_label": "Shop the drop",
+        "button_link": ""
+      }
+    },
+    "hero": {
+      "type": "loomhaus-hero",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "4.8★",
+            "label": "2,000+ reviews"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "100%",
+            "label": "organic cotton"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "value": "30 days",
+            "label": "free returns"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "badge": "New season · Autumn / Winter",
+        "heading": "The Winter Edit",
+        "text": "Warm layers, honest fabrics and fits that work every day. Discover the pieces our community wears on repeat this season.",
+        "button_label": "Shop now",
+        "button_link": "",
+        "image": "shopify://shop_images/loomhaus-classic-varsity-top-white.jpg",
+        "card_product": "",
+        "card_title": "",
+        "card_caption": "Bestseller this week"
+      }
+    },
+    "marquee": {
+      "type": "loomhaus-marquee",
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "text": "Organic cotton"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "text": "Made to last"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "text": "Sizes XS to L"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "text": "Free returns"
+          }
+        },
+        "i5": {
+          "type": "item",
+          "settings": {
+            "text": "Ethically made"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "i5"
+      ],
+      "settings": {
+        "speed": 30
+      }
+    },
+    "grid": {
+      "type": "loomhaus-product-grid",
+      "blocks": {
+        "t1": {
+          "type": "tile",
+          "settings": {
+            "product": "ocean-blue-shirt",
+            "hotspot_x": 51,
+            "hotspot_y": 30
+          }
+        },
+        "t2": {
+          "type": "tile",
+          "settings": {
+            "product": "olive-green-jacket",
+            "hotspot_x": 55,
+            "hotspot_y": 42
+          }
+        },
+        "t3": {
+          "type": "tile",
+          "settings": {
+            "product": "navy-sport-jacket",
+            "hotspot_x": 42,
+            "hotspot_y": 36
+          }
+        },
+        "t4": {
+          "type": "tile",
+          "settings": {
+            "product": "striped-silk-blouse",
+            "hotspot_x": 51,
+            "hotspot_y": 30
+          }
+        },
+        "t5": {
+          "type": "tile",
+          "settings": {
+            "product": "led-high-tops",
+            "hotspot_x": 44,
+            "hotspot_y": 55
+          }
+        },
+        "t6": {
+          "type": "tile",
+          "settings": {
+            "product": "striped-skirt-and-top",
+            "hotspot_x": 52,
+            "hotspot_y": 67
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6"
+      ],
+      "settings": {
+        "eyebrow": "Shop the look",
+        "heading": "Loomhaus in the wild",
+        "hint": "Tap the + on any look to shop it."
+      }
+    },
+    "featured": {
+      "type": "loomhaus-featured-product",
+      "settings": {
+        "product": "classic-varsity-top",
+        "tax_note": "MRP inclusive of all taxes"
+      }
+    },
+    "footer": {
+      "type": "loomhaus-footer",
+      "blocks": {
+        "c1": {
+          "type": "column",
+          "settings": {
+            "heading": "Shop",
+            "label_1": "Women",
+            "url_1": "#",
+            "label_2": "Men",
+            "url_2": "#",
+            "label_3": "New arrivals",
+            "url_3": "#",
+            "label_4": "Bestsellers",
+            "url_4": "#",
+            "label_5": "",
+            "url_5": "",
+            "label_6": "",
+            "url_6": ""
+          }
+        },
+        "c2": {
+          "type": "column",
+          "settings": {
+            "heading": "Help",
+            "label_1": "Shipping",
+            "url_1": "#",
+            "label_2": "Returns",
+            "url_2": "#",
+            "label_3": "Size guide",
+            "url_3": "#",
+            "label_4": "Contact us",
+            "url_4": "#",
+            "label_5": "",
+            "url_5": "",
+            "label_6": "",
+            "url_6": ""
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2"
+      ],
+      "settings": {
+        "logo_text": "Loomhaus",
+        "tagline": "Clothes made to be worn for years, not seasons."
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "announcement",
+    "header",
+    "hero",
+    "marquee",
+    "grid",
+    "featured",
+    "footer"
   ]
 }

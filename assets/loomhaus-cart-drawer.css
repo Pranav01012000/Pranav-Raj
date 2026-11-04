@@ -1,0 +1,89 @@
+/* ---------- Cart drawer: desktop (right side panel) ---------- */
+.lh-drawer {
+  position: fixed; inset: 0; z-index: 1100;
+  font-family: var(--lh-font-body); color: var(--lh-text);
+  visibility: hidden; transition: visibility .3s;
+}
+.lh-drawer *, .lh-drawer *::before, .lh-drawer *::after { box-sizing: border-box; }
+.lh-drawer.is-open { visibility: visible; }
+
+.lh-drawer__overlay {
+  position: absolute; inset: 0; background: rgba(34, 34, 32, .55);
+  opacity: 0; transition: opacity .3s ease;
+}
+.lh-drawer.is-open .lh-drawer__overlay { opacity: 1; }
+
+.lh-drawer__panel {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column; width: 100%; max-width: 420px;
+  background: #fff; transform: translateX(100%); transition: transform .3s ease;
+}
+.lh-drawer.is-open .lh-drawer__panel { transform: none; }
+
+/* Header */
+.lh-drawer__header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 24px 20px; border-bottom: 1px solid var(--lh-border);
+}
+.lh-drawer__header h2 { margin: 0; font-family: var(--lh-font-heading); font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+.lh-drawer__close {
+  display: grid; place-items: center; width: 32px; height: 32px;
+  border: 0; border-radius: 6px; background: transparent; color: inherit; cursor: pointer;
+}
+.lh-drawer__close:hover { background: var(--lh-bg); }
+
+/* Items */
+.lh-drawer__items { flex: 1; overflow-y: auto; padding: 8px 24px; }
+.lh-drawer__empty { margin: 40px 0; text-align: center; font-size: 14px; color: var(--lh-muted); }
+
+.lh-line { display: grid; grid-template-columns: 72px 1fr auto; gap: 14px; padding: 14px 0; }
+.lh-line__img { width: 72px; height: 88px; object-fit: cover; border-radius: 8px; background: var(--lh-bg); }
+.lh-line__info { min-width: 0; }
+.lh-line__title { margin: 0; font-size: 13px; font-weight: 600; line-height: 1.3; }
+.lh-line__variant { margin: 3px 0 8px; font-size: 11px; color: var(--lh-muted); }
+.lh-line__price { font-size: 13px; font-weight: 600; }
+
+/* AUTO-ADDED tag */
+.lh-line__tag {
+  display: inline-block; margin-bottom: 4px; padding: 2px 6px; border-radius: 3px;
+  background: var(--lh-border); font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+}
+
+/* Quantity + remove */
+.lh-line__actions { display: flex; align-items: center; gap: 14px; }
+.lh-qty { display: inline-flex; align-items: center; border: 1px solid var(--lh-border); border-radius: 6px; }
+.lh-qty button {
+  width: 26px; height: 26px; border: 0; background: transparent; font-size: 14px; color: inherit; cursor: pointer;
+}
+.lh-qty button:disabled { opacity: .35; cursor: not-allowed; }  /* locked qty on the auto-added item */
+.lh-qty span { min-width: 22px; text-align: center; font-size: 12px; }
+.lh-line__remove {
+  padding: 0; border: 0; background: none; font: inherit; font-size: 11px;
+  color: var(--lh-muted); cursor: pointer; text-decoration: underline;
+}
+.lh-line__remove:hover { color: var(--lh-text); }
+
+/* Footer */
+.lh-drawer__footer { padding: 20px 24px 24px; border-top: 1px solid var(--lh-border); }
+.lh-drawer__subtotal { display: flex; justify-content: space-between; font-size: 14px; }
+.lh-drawer__subtotal strong { font-family: var(--lh-font-heading); font-size: 16px; }
+.lh-drawer__note { margin: 6px 0 16px; font-size: 11px; color: var(--lh-muted); }
+.lh-drawer__checkout {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  height: 48px; border-radius: 8px; background: var(--lh-dark); color: #fff; text-decoration: none;
+  font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  transition: transform .2s;
+}
+.lh-drawer__checkout:hover { transform: translateY(-2px); }
+
+/* ---------- Mobile: full screen panel ---------- */
+@media (max-width: 749px) {
+  .lh-drawer__panel { max-width: none; }
+  .lh-drawer__header { padding: 20px 16px 16px; }
+  .lh-drawer__items { padding: 4px 16px; }
+  .lh-drawer__footer { padding: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lh-drawer, .lh-drawer__overlay, .lh-drawer__panel, .lh-drawer__checkout { transition: none; }
+}
